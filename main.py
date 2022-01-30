@@ -32,6 +32,9 @@ class WZAutoEditor(object):
     _output_name = 'output'
     _players = []
 
+    _end_clip_extra_time = 3
+    _pre_clip_extra_time = 8
+
     def generate_video(self):
         self._parse_options_load_clips()
         for clip in self._clips:
@@ -160,8 +163,8 @@ class WZAutoEditor(object):
 
         logging.info('Generating clip timestamps')
         all_clips_times = []
-        pre_clip_extra_time = 8
-        end_clip_extra_time = 3
+        pre_clip_extra_time = self._pre_clip_extra_time
+        end_clip_extra_time = self._end_clip_extra_timez
 
         for index, clip in enumerate(self._clips):
             clips_times = []
