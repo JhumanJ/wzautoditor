@@ -32,8 +32,8 @@ class WZAutoEditor(object):
     _output_name = 'output'
     _players = []
 
-    _end_clip_extra_time = 3
-    _pre_clip_extra_time = 8
+    _end_clip_extra_time = 5
+    _pre_clip_extra_time = 10
 
     def generate_video(self):
         self._parse_options_load_clips()
@@ -66,8 +66,8 @@ class WZAutoEditor(object):
             clips.append(VideoFileClip(path))
 
         arguments = getopt.getopt(sys.argv[2:], 's:e:o:p:')[0]
-        start_times = None
-        end_times = None
+        start_times = []
+        end_times = []
 
         # Parse options
         if len(arguments) > 0:
@@ -99,7 +99,7 @@ class WZAutoEditor(object):
                     'Starting clip ' + str(index) + ' at second ' + str(start_time) + ' and ending it a second ' + str(
                         end_time))
                 final_clips.append(clip.subclip(start_time, end_time))
-            elif start_time[index]:
+            elif start_time:
                 logging.info('Starting clip at second ' + str(start_time))
                 final_clips.append(clip.subclip(start_time, clip.duration))
             elif end_time:
@@ -164,7 +164,7 @@ class WZAutoEditor(object):
         logging.info('Generating clip timestamps')
         all_clips_times = []
         pre_clip_extra_time = self._pre_clip_extra_time
-        end_clip_extra_time = self._end_clip_extra_timez
+        end_clip_extra_time = self._end_clip_extra_time
 
         for index, clip in enumerate(self._clips):
             clips_times = []
